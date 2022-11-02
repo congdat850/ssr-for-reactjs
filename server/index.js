@@ -12,9 +12,8 @@ const app = express();
 
 app.get("/", (req, res) => {
   const app1 = ReactDOMServer.renderToString(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    // <App /> (wrong reactjs not define. Because server side)
+    <div>Cong Dat</div>
   );
   const indexFile = path.resolve("./build/index.html");
 
@@ -23,6 +22,7 @@ app.get("/", (req, res) => {
       console.error("Something went wrong:", err);
       return res.status(500).send("Oops, better luck next time!");
     }
+    console.log("datnc", data);
 
     return res.send(
       data.replace('<div id="root"></div>', `<div id="root">${app1}</div>`)
